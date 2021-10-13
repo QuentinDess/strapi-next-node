@@ -38,7 +38,7 @@ async function getUsersInRoom(room) {
 }
 async function deleteUser(socketId) {
     try {
-        const user = await strapi.services.userss.delete({ socketId: socketId });
+        const user = await strapi.services.userss.delete({ socketid: socketid });
         return user;
     } catch(err) {
         console.log("Error while deleting the User", err);
