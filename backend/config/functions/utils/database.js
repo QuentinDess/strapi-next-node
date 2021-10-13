@@ -8,13 +8,15 @@ async function findUser(username, room) {
     }
 }
 async function createUser({ username, room, status, socketId }) {
+
     try {
         const user = await strapi.services.userss.create({
             username,
             room,
             status: status,
-            socketId
+            socketid : socketId
         });
+        console.log(user)
         return user;
     } catch(err) {
         console.log("User couldn't be created. Try again!")
@@ -38,8 +40,12 @@ async function getUsersInRoom(room) {
 }
 async function deleteUser(socketId) {
     try {
-        const user = await strapi.services.userss.delete({ socketid: socketid });
-        return user;
+        console.log(socketId);
+
+        const userExists = await strapi.services.userss.find({ socketid: socketId });
+        const user = await strapi.services.userss.delete({ socketid: socketId });
+        console.log(userExists)
+        return userExists;
     } catch(err) {
         console.log("Error while deleting the User", err);
     }
