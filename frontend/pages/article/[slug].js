@@ -5,10 +5,13 @@ import Layout from "../../components/layout"
 import NextImage from "../../components/image"
 import Seo from "../../components/seo"
 import { getStrapiMedia } from "../../lib/media"
+import Comments from "../../components/comments.js"
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.image)
+              console.log(article.comments)
 
+  
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -44,7 +47,9 @@ const Article = ({ article, categories }) => {
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
                 <Moment format="MMM Do YYYY">{article.published_at}</Moment>
+                
               </p>
+              <Comments comments= {article.comments} ></Comments>
             </div>
           </div>
         </div>
