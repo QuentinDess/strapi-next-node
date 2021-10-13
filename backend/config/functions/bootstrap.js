@@ -249,7 +249,10 @@ io.on('connection', function(socket) {
                         user: 'bot',
                         text: `${user.username} has joined`,
                     });
-
+                    io.to(user.room).emit('roomInfo', {
+                      room: user.room,
+                      users: await getUsersInRoom(user.room)
+                    })
                 } else {
                     callback(`user could not be created. Try again!`)
                 }
@@ -270,10 +273,7 @@ io.on('connection', function(socket) {
                   user: user.username,
                   text: data.message,
               });
-              io.to(user.room).emit('roomInfo', {
-                room: user.room,
-                users: await getUsersInRoom(user.room)
-              })
+             
           } else {
               callback(`User doesn't exist in the database. Rejoin the chat`)
           }
