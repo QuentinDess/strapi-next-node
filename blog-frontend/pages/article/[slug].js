@@ -9,9 +9,6 @@ import Comments from "../../components/comments.js"
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.image)
-              console.log(article.comments)
-
-  
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -47,14 +44,16 @@ const Article = ({ article, categories }) => {
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
                 <Moment format="MMM Do YYYY">{article.published_at}</Moment>
-                
+
               </p>
-              <Comments comments= {article.comments} ></Comments>
             </div>
           </div>
         </div>
       </div>
+      <Comments comments={article.comments}></Comments>
+
     </Layout>
+
   )
 }
 
@@ -74,7 +73,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const articles = await fetchAPI(`/articles?slug=${params.slug}`)
   const categories = await fetchAPI("/categories")
-
+  console.log("static-props")
   return {
     props: { article: articles[0], categories },
     revalidate: 1,

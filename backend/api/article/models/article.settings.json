@@ -48,6 +48,10 @@
     "author": {
       "via": "articles",
       "model": "writer"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "article_id"
     }
   }
 }

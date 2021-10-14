@@ -23,6 +23,10 @@
     },
     "writer": {
       "model": "writer"
+    },
+    "article_id": {
+      "via": "comments",
+      "model": "article"
     }
   }
 }
